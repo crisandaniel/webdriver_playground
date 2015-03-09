@@ -1,0 +1,92 @@
+{
+	"HomePage": {
+		"title": "Amazon.co.uk",
+		"actions": {
+			"click_signin_text": {
+				"locator": {"id": "nav-signin-text"},
+				"wait": {"page": "LoginPage"}
+			},
+			"click_signin": {
+				"locator": {"id": "nav-flyout-ya-signin"},
+				"wait": {"page": "LoginPage"}
+			}
+		}
+	},
+	"LoginPage": {
+		"unique_locator": {"id": "ap_email"}, 
+		"actions": {
+			"type_username": {
+				"locator": {"id": "ap_email"},
+				"wait": {"no": "no"}
+			},
+			"type_password": {
+				"locator": {"id": "ap_password"},
+				"wait": {"no": "no"}
+			},
+			"click_signin": {
+				"locator": {"id": "signInSubmit-input"},
+				"wait": {"page": "AuthenticatedPage"}
+			}
+		}
+	},
+	"AuthenticatedPage": {
+		"unique_locator": {"id": "nav-item-signout"},
+		"actions": {
+			"type_search_query": {
+				"locator": {"id": "twotabsearchtextbox"},
+				"wait": {"no": "no"}
+			},
+			"submit_search": {
+				"locator": {"id": "twotabsearchtextbox"},
+				"wait": {"page": "SearchResultsPage"}
+			}
+		}
+	},
+	"SearchResultsPage": {
+		"unique_locator": {"id": "atfResults"},
+		"actions": {
+			"inspect_product": {
+				"locator": {"id": "result_0"},
+				"wait": {"page": "SearchResultsPage"}
+			},
+			"click_product": {
+				"locator": {"tag_name": "img"},
+				"wait": {"page": "ProductPage"}
+			}
+		},
+		"dynamic_elements": {
+			"parent_object": {"id": "atfResults"},
+			"children": {"tag_name": "li"},
+			"key": "id",
+			"value": {"tag_name": "h2"}
+		}
+	},
+	"ProductPage": {
+		"unique_locator": {"id": "add-to-cart-button"},
+		"actions": {
+			"click_add_to_basket": {
+				"locator": {"id": "add-to-cart-button"},
+				"wait": {"page": "ProceedToCheckoutPage"}
+			}
+		},
+		"elements": {
+			"title": {"id": "productTitle"},
+			"price": {"id": "priceblock_ourprice"}
+		}
+	},
+	"ProceedToCheckoutPage": {
+		"unique_locator": {"id": "hlb-ptc-btn-native"},
+		"actions": {
+			"click_basket": {
+				"locator": {"id": "nav-cart"},
+				"wait": {"page": "BasketPage"}
+			}
+		}
+	},
+	"BasketPage": {
+		"unique_locator": {"title": "Amazon.co.uk Shopping Basket"},
+		"elements": {
+			"cart": {"id": "gutterCartViewForm"}
+		}
+	}
+}
